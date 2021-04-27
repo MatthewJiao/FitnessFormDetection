@@ -31,7 +31,7 @@ class poseDetector():
                 cx, cy = int(lm.x*w), int(lm.y*h)
                 self.lmList.append([id, cx, cy])
                 if draw:
-                    cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
+                    cv2.circle(img, (cx, cy), 3, (255, 0, 0), cv2.FILLED)
         return self.lmList
 
     def findAngle(self, img, p1, p2, p3, draw = True):
@@ -48,14 +48,14 @@ class poseDetector():
             cv2.line(img, (x1, y1), (x2, y2), (255,255,255), 3)
             cv2.line(img, (x3, y3), (x2, y2), (255,255,255), 3)
 
-            cv2.circle(img, (x1, y1), 10, (0, 0, 255), cv2.FILLED)
-            cv2.circle(img, (x1, y1), 15, (0, 0, 255), 2)
-            cv2.circle(img, (x2, y2), 10, (0, 0, 255), cv2.FILLED)
-            cv2.circle(img, (x2, y2), 15, (0, 0, 255), 2)
-            cv2.circle(img, (x3, y3), 10, (0, 0, 255), cv2.FILLED)
-            cv2.circle(img, (x3, y3), 15, (0, 0, 255), 2)
+            cv2.circle(img, (x1, y1), 5, (0, 0, 255), cv2.FILLED)
+            cv2.circle(img, (x1, y1), 10, (0, 0, 255), 2)
+            cv2.circle(img, (x2, y2), 5, (0, 0, 255), cv2.FILLED)
+            cv2.circle(img, (x2, y2), 10, (0, 0, 255), 2)
+            cv2.circle(img, (x3, y3), 5, (0, 0, 255), cv2.FILLED)
+            cv2.circle(img, (x3, y3), 10, (0, 0, 255), 2)
 
-            cv2.putText(img, str(int(angle)), (x2+20, y2+50), cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 255), 2)
+            cv2.putText(img, str(int(angle)), (x2+10, y2+20), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
 
         return angle
 
