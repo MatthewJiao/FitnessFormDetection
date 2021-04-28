@@ -36,7 +36,7 @@ def main():
 
             perLeft = np.interp(angleLeft, (250, 290), (0, 100))
             perRight = np.interp(angleRight, (250, 290), (0, 100))
-            print("right", perRight, visibilityList[14])
+            print("right", perRight, visibilityList[16][1])
             #print("left", perLeft, visibilityList[13])
 
             perListLeft.append(perLeft)
@@ -52,27 +52,31 @@ def main():
             adj = 2
             if len(perListLeft) >= adj:
                 if dirLeft == 0:
-                    if perLeft < perListLeft[len(perListLeft) - adj]:
-                        foul_count += 1
-                        winsound.Beep(frequency, duration)
-                        dirLeft = 1
+                    if (visibilityList[11][1] > 0.3 and visibilityList[13][1] > 0.3 and visibilityList[15][1] > 0.3):
+                        if perLeft < perListLeft[len(perListLeft) - adj]:
+                            foul_count += 1
+                            winsound.Beep(frequency, duration)
+                            dirLeft = 1
                 else:
-                    if perLeft > perListLeft[len(perListLeft) - adj]:
-                        foul_count += 1
-                        winsound.Beep(frequency, duration)
-                        dirLeft = 0
+                    if (visibilityList[11][1] > 0.3 and visibilityList[13][1] > 0.3 and visibilityList[15][1] > 0.3):
+                        if perLeft > perListLeft[len(perListLeft) - adj]:
+                            foul_count += 1
+                            winsound.Beep(frequency, duration)
+                            dirLeft = 0
 
             if len(perListRight) >= adj:
                 if dirRight == 0:
-                    if perRight < perListRight[len(perListRight) - adj]:
-                        foul_count += 1
-                        winsound.Beep(frequency, duration)
-                        dirRight = 1
+                    if (visibilityList[12][1] > 0.3 and visibilityList[14][1] > 0.3 and visibilityList[16][1] > 0.3):
+                        if perRight < perListRight[len(perListRight) - adj]:
+                            foul_count += 1
+                            winsound.Beep(frequency, duration)
+                            dirRight = 1
                 else:
-                    if perRight > perListRight[len(perListRight) - adj]:
-                        foul_count += 1
-                        winsound.Beep(frequency, duration)
-                        dirRight = 0
+                    if (visibilityList[12][1] > 0.3 and visibilityList[14][1] > 0.3 and visibilityList[16][1] > 0.3):
+                        if perRight > perListRight[len(perListRight) - adj]:
+                            foul_count += 1
+                            winsound.Beep(frequency, duration)
+                            dirRight = 0
 
 
             color = (0, 0, 255)
