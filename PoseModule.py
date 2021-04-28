@@ -4,7 +4,7 @@ import mediapipe as mp
 import math
 
 class poseDetector():
-    def __init__(self, mode = False, upBody = False, smooth = True, detectionCon = 0.5, trackCon = 0.5):
+    def __init__(self, mode = False, upBody = False, smooth = True, detectionCon = 0.80, trackCon = 0.70):
         self.mode = mode
         self.upBody = upBody
         self.smooth = smooth
@@ -25,14 +25,16 @@ class poseDetector():
 
     def findPosition(self, img, draw = True):
         self.lmList = []
+        visibilityList = []
         if self.results.pose_landmarks:
             for id, lm in enumerate(self.results.pose_landmarks.landmark):
                 h, w, c = img.shape
                 cx, cy = int(lm.x*w), int(lm.y*h)
                 self.lmList.append([id, cx, cy])
+                visibilityList.append([id, lm.visibility])
                 if draw:
                     cv2.circle(img, (cx, cy), 3, (255, 0, 0), cv2.FILLED)
-        return self.lmList
+        return self.lmList, visibilityList
 
     def findAngle(self, img, p1, p2, p3, draw = True):
         x1, y1 = self.lmList[p1][1:]
