@@ -1,0 +1,71 @@
+body{
+  width:100%;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  background:hsla(0, 0%, 0%, 1);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(to right top, hsla(0, 5%,5%, 0.5), hsla(0, 0%, 15%,1));
+  background-image:-moz-linear-gradient(to right top, hsla(0, 5%,5%, 0.5), hsla(0, 0%, 15%,1));
+}
+div{
+  left: 50%;
+	position: absolute;
+	top :50%;
+	transform :translate( -50%, -50% );
+}
+.grid {
+  list-style: none;
+  width: 70px;
+  height: 70px;
+  outline: hsla(0,5%,5%,1) solid 1px;
+  box-shadow:1px 1px 1px 1px hsla(0,0%,0%,.5);
+  margin: 0;
+  padding: 8px 5px 5px 8px;
+}
+.grid li {
+  width: 30%;
+  height: 30%;
+  margin: 1%;
+  background: hsla(0,0%,0%,1);
+  float: left;
+  animation: color 2s infinite alternate;
+}
+
+.grid li:nth-child(1) {
+  animation-delay: 0.2000004s;
+}
+.grid li:nth-child(2) {
+
+  animation-delay: 0.1000001s;
+}
+.grid li:nth-child(4) {
+  clear: both;
+  animation-delay: 0.3000004s;
+}
+.grid li:nth-child(5) {
+  width: 61.5%;
+  animation-delay: 0.7000001s;
+}
+.grid li:nth-child(6) {
+  clear: both;
+  animation-delay: 0.4000004s;
+}
+.grid li:nth-child(7) {
+  animation-delay: 0.5000001s;
+}
+.grid li:nth-child(8) {
+  animation-delay: 0.6000004s;
+}
+@keyframes color {
+  0% {
+    background: hsla(232, 95%, 25%, 1);
+  }
+  25% {
+    background: hsla(309, 95%, 55%, 1);
+  }
+  50% {
+    background: hsla(155, 95%, 55%, 1);
+  }
+}
