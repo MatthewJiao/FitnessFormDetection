@@ -6,7 +6,7 @@ import winsound
 
 def pushups():
     cap = cv2.VideoCapture('PoseVideos/3.mp4')
-    # cap = cv2.VideoCapture(0)
+    #cap = cv2.VideoCapture(0)
 
     detector = pm.poseDetector()
     dirRight = 0
@@ -122,10 +122,12 @@ def pushups():
         cv2.putText(img, f'{int(fps)}fps', (10, 40), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
 
         cv2.imshow("Image", img)
-        cv2.waitKey(1)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
 
 def curl():
-    cap = cv2.VideoCapture('PoseVideos/3.mp4')
+    cap = cv2.VideoCapture('PoseVideos/1.mp4')
     #cap = cv2.VideoCapture(0)
 
     detector = pm.poseDetector()
@@ -142,8 +144,8 @@ def curl():
 
         success, img = cap.read()
         height, width, layers = img.shape
-        new_h = int(height/5)
-        new_w = int(width/5)
+        new_h = int(height/2)
+        new_w = int(width/2)
         img = cv2.resize(img, (new_w, new_h))
 
         #img = cv2.imread('PoseVideos/test.jpg')
@@ -171,17 +173,21 @@ def curl():
             s_duration = 200
             adj = 2
             vis_fac = 0.9
-            if len(perListLeft) >= adj:
+            if len(perListLeft) >= 4:
                 if dirLeft == 0:
-                    if (visibilityList[11][1] > vis_fac and visibilityList[13][1] > vis_fac and visibilityList[15][1] > vis_fac):
-                        if perLeft < perListLeft[len(perListLeft) - adj]:
-                            foul_count += 1
+                    if (visibilityList[11][1] > vis_fac and visibilityList[13][1] > vis_fac and visibilityList[15][
+                        1] > vis_fac):
+                        if perLeft < perListLeft[len(perListLeft) - adj] and perListLeft[len(perListLeft) - 2] < \
+                                perListLeft[len(perListLeft) - adj - 1] \
+                                and perListLeft[len(perListLeft) - 3] < perListLeft[len(perListLeft) - adj - 2]:
                             winsound.Beep(frequency, duration)
                             dirLeft = 1
                 else:
-                    if (visibilityList[11][1] > vis_fac and visibilityList[13][1] > vis_fac and visibilityList[15][1] > vis_fac):
-                        if perLeft > perListLeft[len(perListLeft) - adj]:
-                            foul_count += 1
+                    if (visibilityList[11][1] > vis_fac and visibilityList[13][1] > vis_fac and visibilityList[15][
+                        1] > vis_fac):
+                        if perLeft > perListLeft[len(perListLeft) - adj] and perListLeft[len(perListLeft) - 2] > \
+                                perListLeft[len(perListLeft) - adj - 1] \
+                                and perListLeft[len(perListLeft) - 3] > perListLeft[len(perListLeft) - adj - 2]:
                             winsound.Beep(frequency, duration)
                             dirLeft = 0
 
@@ -251,7 +257,9 @@ def curl():
         cv2.putText(img, f'{int(fps)}fps', (10, 40), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
 
         cv2.imshow("Image", img)
-        cv2.waitKey(1)
+        #cv2.waitKey(1)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
 if __name__ == "__main__":
-    pushups()
+    curl()
