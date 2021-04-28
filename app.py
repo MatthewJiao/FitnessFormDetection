@@ -6,9 +6,7 @@ import PoseModule as pm
 import time
 import winsound
 
-#Initialize the Flask app
 app = Flask(__name__)
-
 
 camera = cv2.VideoCapture(0)
 
@@ -24,13 +22,13 @@ def gen_frames():
     perListLeft = []
     perListRight = []
     while True:
-        success, img = camera.read()  # read the camera frame
+        success, img = camera.read()
         height, width, layers = img.shape
         new_h = int(height)
         new_w = int(width)
         img = cv2.resize(img, (new_w, new_h))
 
-        # img = cv2.imread('PoseVideos/test.jpg')
+        #img = cv2.imread('PoseVideos/test.jpg')
         img = detector.findPose(img)
 
         lmList, visibilityList = detector.findPosition(img)
